@@ -22,26 +22,17 @@ string choiceChecker(string choiceInput) {
 string userInputController() {
   // THIS ALSO WORKS ✅
   string choiceInput; 
-  cout << "Pick - rock (r), paper (p) or scissors (s): ";
-  cin >> choiceInput;
-
-  if (choiceInput.length() == 1) {
-    choiceInput = choiceChecker(choiceInput); 
+  while(choiceInput != "r" && choiceInput != "p" && choiceInput != "s" ) {  
+    cout << "Pick - r (rock), p (paper) or s (scissors): ";
+    cin >> choiceInput;
   }
 
   return choiceInput;
 }
 
 int main() {
-  // pick r,p,s:
   string choice = userInputController();
+  choice = choiceChecker(choice);
+  
   cout << choice << endl;
-
-  // PROBLEM 💥: 
-  /*
-  At this point, single characters should be 
-  */
-  // while(choice != "rock" || choice != "paper" || choice != "scissors") {
-  //   choice = userInputController();
-  // }
 }
