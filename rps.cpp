@@ -1,17 +1,17 @@
 #include <iostream>
-#include <algorithm>
 using namespace std; 
 
 string userInputController();
-string characterChecker(string choice);
+string choiceChecker(string choice);
 
-string characterChecker(string choice) {
+string choiceChecker(string choiceInput) {
+  // THIS WORKS ✅
   string choiceString;
-  if (choice=="r") {
+  if (choiceInput=="r") {
     choiceString = "rock";
-  } else if (choice == "p") {
+  } else if (choiceInput == "p") {
     choiceString = "paper";
-  } else if (choice == "s") {
+  } else if (choiceInput == "s") {
     choiceString = "scissors";
   } else {
     choiceString = userInputController();
@@ -19,18 +19,29 @@ string characterChecker(string choice) {
   return choiceString;
 }
 
-string  userInputController() {
-  string choice; 
+string userInputController() {
+  // THIS ALSO WORKS ✅
+  string choiceInput; 
   cout << "Pick - rock (r), paper (p) or scissors (s): ";
-  cin >> choice;
-  if (choice.length() == 1) {
-    choice = characterChecker(choice);
-  } 
-  return choice; 
+  cin >> choiceInput;
+
+  if (choiceInput.length() == 1) {
+    choiceInput = choiceChecker(choiceInput); 
+  }
+
+  return choiceInput;
 }
 
 int main() {
-  // pick r,ps: 
-  string choice = userInputController(); 
+  // pick r,p,s:
+  string choice = userInputController();
   cout << choice << endl;
+
+  // PROBLEM 💥: 
+  /*
+  At this point, single characters should be 
+  */
+  // while(choice != "rock" || choice != "paper" || choice != "scissors") {
+  //   choice = userInputController();
+  // }
 }
