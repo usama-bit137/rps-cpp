@@ -5,37 +5,12 @@ using namespace std;
 string playerInputController();
 string choiceChecker(string choice);
 int winLoseLogic(string playerChoice, string computerChoice);
-int game(); 
+int oneGame(); 
 
-int main() {
-  
-  int numGames;
-  cout << "How many games do you want to play?: " << endl;
-  cin >> numGames;
-  int playerScore = 0, computerScore = 0; 
-  
-  for (int i = 1; i <= numGames; ++i){
-    cout << "ROUND " << i << endl;
-    int score = game();
-    if (score < 0) {
-      ++computerScore;
-      cout << "Computer Wins This Round You Fool!!!" << endl;
-    } else if (score > 0) {
-      ++playerScore;
-      cout << "You Win This Time, But Next Time We Shall See!!!" << endl;
-    } else {
-      cout << "It's A Draw!" << endl;
-    }
-  }
-
-  string winner = ( playerScore > computerScore ) ? "Blast It! You Won!" : "SUCKERRRRRR!!!";
-  cout << winner << endl;    
-
-}
 
 string choiceChecker(string choiceInput) {
   string choiceString;
-  
+
   if (choiceInput=="r") {
     choiceString = "rock";
   } else if (choiceInput == "p") {
@@ -63,7 +38,7 @@ string playerInputController() {
 int winLoseLogic(string playerChoice, string computerChoice) {
   int verdict;
   
-  if(playerChoice == computerChoice) {
+  if (playerChoice == computerChoice) {
     verdict = 0;
   } else if (playerChoice == "rock") {
     verdict = (computerChoice == "scissors") ? 1  : -1;
@@ -76,7 +51,7 @@ int winLoseLogic(string playerChoice, string computerChoice) {
 
 }
 
-int game() {
+int oneGame() {
   string playerChoice = playerInputController();
   playerChoice = choiceChecker(playerChoice);
   cout << "You Chose: "<< playerChoice << endl;
@@ -88,4 +63,39 @@ int game() {
   cout << "Computer Chose: " << stringComputerChoice << endl;
 
   return winLoseLogic(playerChoice, stringComputerChoice);
+}
+
+int main() {
+  
+  int numGames;
+  cout << "How many games do you want to play?: " << endl;
+  cin >> numGames;
+  int playerScore = 0, computerScore = 0; 
+  
+  for (int i = 1; i <= numGames; ++i){
+    cout << "ROUND " << i << endl;
+    int score = oneGame();
+   
+    if (score < 0) {
+      ++computerScore;
+      cout << "Computer Wins This Round You Fool!!!" << endl;
+    } else if (score > 0) {
+      ++playerScore;
+      cout << "You Win This Time, But Next Time We Shall See!!!" << endl;
+    } else {
+      cout << "It's A Draw!" << endl;
+    }
+  
+  }
+
+  if (playerScore == computerScore) {
+    cout << "DRAWWWW!";
+    // don't run the next two lines: 
+    return 0;
+  } 
+
+  string winner = ( playerScore > computerScore ) ? "Blast It! You Won!" : "SUCKERRRRRR!!!";
+  cout << winner << endl;    
+
+  return 0;
 }
